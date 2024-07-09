@@ -1,5 +1,6 @@
+from typing_extensions import Self
 from pydantic import BaseModel
-from typing import List, Optional
+from typing import List, Optional, Any
 
 class SignUp(BaseModel):
     id: Optional[int] = None
@@ -9,14 +10,10 @@ class SignUp(BaseModel):
     is_active: bool
     is_staff: bool
 
-    class Config:
-        orm_mode = True
-        json_schema_extra = {
-            "example": {
-                "username": "user7428347t32",
-                "email": "mwdkw@gmail.com",
-                "password": "12345",
-                "is_active": True,
-                "is_staff": False,
-            }
-        }
+
+class LoginModel(BaseModel):
+    username: str
+    password: str
+
+class Settings(BaseModel):
+    authjwt_secret_key: str = "76ce38ef876902afa65ba6b260015efd40abe3ff251ccc5381ab876baba93364"
